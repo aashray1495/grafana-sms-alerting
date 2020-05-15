@@ -1,6 +1,3 @@
-#Dated 03/31/2020-DIGEST:sha256:9d43bebe9f3a5d27647231e1fa760644fafcc09a1ad85eeae1df40c491841bd9
-# FROM python:alpine AS dashboard-generator
-
 
 FROM grafana/grafana
 USER root

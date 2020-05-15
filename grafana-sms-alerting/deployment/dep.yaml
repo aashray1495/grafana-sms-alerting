@@ -23,7 +23,7 @@ spec:
           - name: GF_INSTALL_PLUGINS
             value: grafana-clock-panel,briangann-gauge-panel,natel-plotly-panel,grafana-simple-json-datasource
         command: ["/bin/bash","-c"]
-        args: ["python /var/lib/grafana/sendsms.py >/dev/null & /run.sh"]
+        args: ["python /var/lib/grafana/sendsms.py >/dev/null & /run.sh"] # location of sendsms.py inside the container
         volumeMounts:
           - name: grafana-data-volumes
             mountPath: /var/lib/grafana
