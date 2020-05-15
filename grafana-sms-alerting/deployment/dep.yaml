@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana
+  labels:
+    app: grafana
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grafana
+  template:
+    metadata:
+      labels:
+        app: grafana
+    spec:
+      containers:
+      - name: grafana
+        image: nubee/grafana-sms:v1
+        ports:
+          - containerPort : 3000
+        env:
+          - name: GF_INSTALL_PLUGINS
+            value: grafana-clock-panel,briangann-gauge-panel,natel-plotly-panel,grafana-simple-json-datasource
+        command: ["/bin/bash","-c"]
+        args: ["python /var/lib/grafana/sendsms.py >/dev/null & /run.sh"]
+        volumeMounts:
+          - name: grafana-data-volumes
+            mountPath: /var/lib/grafana
+          - name: grafana-config
+            mountPath: /etc/grafana/grafana.ini
+            subPath: grafana.ini
+      volumes:
+        - name: grafana-data-volumes
+          persistentVolumeClaim:
+            claimName: grafana-data
+        - name: grafana-config
+          configMap:
+            name: grafana-config

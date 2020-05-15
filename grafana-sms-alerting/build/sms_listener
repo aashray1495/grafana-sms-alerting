@@ -1,0 +1,14 @@
+#Dated 03/31/2020-DIGEST:sha256:9d43bebe9f3a5d27647231e1fa760644fafcc09a1ad85eeae1df40c491841bd9
+FROM python:alpine AS dashboard-generator
+RUN pip install grafanalib && \
+pip install flask && \
+pip install boto3
+
+RUN mkdir -p /pyfiles/sms
+COPY sendsms.py /pyfiles/sms/
+# # COPY templates /tmp/templates
+# RUN mkdir /tmp/rendered && \
+# 	generate-dashboards /tmp/templates/* && \
+# 	mv /tmp/templates/*.json /tmp/rendered
+
+FROM grafana/grafana:latest

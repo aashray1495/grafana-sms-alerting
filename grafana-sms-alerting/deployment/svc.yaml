@@ -1,0 +1,18 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: grafana
+spec:
+  # type: ClusterIP
+  type: LoadBalancer
+  loadBalancerSourceRanges:
+  - 12.11.23.131/31
+  - 40.115.131.426/34
+  ports:
+  - port: 3000
+    targetPort: 3000
+    name: grafana-ui
+    protocol: TCP
+  selector:
+    app: grafana
