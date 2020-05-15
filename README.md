@@ -15,4 +15,8 @@ URL: http://127.0.0.1:5000/sendsms?number='your_arn_from_sns'
 or use topic directly using sendsms_topic.py where url will look like
 URL: http://127.0.0.1:5000/sendsms
 
+#Logging
+Rotational Logging has been enabled. You will be able to see log.txt in your home folder.
+
 Inspired by https://medium.com/@sean_bradley/create-sms-alert-channel-using-a-custom-webhook-and-aws-sns-27e03d55524b
+
